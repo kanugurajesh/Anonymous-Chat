@@ -8,6 +8,7 @@ import { UploadButton } from "@/utils/uploadthing";
 import toast, { Toaster } from "react-hot-toast";
 
 interface Chat {
+  profile: string;
   name: string;
   message: string;
   image: string;
@@ -83,7 +84,7 @@ export default function Home() {
           }}
         />
         <button
-        className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
+          className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
           onClick={() => {
             toast.dismiss(t.id);
           }}
@@ -106,10 +107,14 @@ export default function Home() {
         {/* @ts-ignore */}
         {chat.map((chat: Chat, index: number) => (
           <li key={index} className="w-full">
-            <div className={`flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md ${index%2 == 0 ? "float-start" : "float-end" }`}>
+            <div
+              className={`flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md ${
+                index % 2 == 0 ? "float-start" : "float-end"
+              }`}
+            >
               <div className="flex gap-2 items-center">
                 <Image
-                  src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
+                  src={chat.profile as string}
                   alt="profile"
                   width={30}
                   height={30}
