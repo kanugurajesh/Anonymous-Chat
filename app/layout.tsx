@@ -1,6 +1,7 @@
 "use client";
 
 import type { Metadata } from "next";
+import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 import { Provider } from "react-redux";
 import "./globals.css";

@@ -3,8 +3,7 @@
 import { useAppDispatch, useAppSelector } from "@/helper/hook";
 import { addChat } from "@/features/chats/chatSlice";
 import { useState, useEffect } from "react";
-import { Provider } from "react-redux";
-import { store } from "@/helper/store";
+import { UploadButton } from "@/utils/uploadthing";
 
 interface Chat {
   message: string;
@@ -33,6 +32,18 @@ export default function Home() {
 
   return (
     <main>
+      <UploadButton
+        endpoint="imageUploader"
+        onClientUploadComplete={(res:any) => {
+          // Do something with the response
+          console.log("Files: ", res);
+          alert("Upload Completed");
+        }}
+        onUploadError={(error: Error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`);
+        }}
+      />
       <input type="text" onChange={(e) => handleInput(e)}/>
       <button onClick={() => handleAddChat()}>Add</button>
     </main>
