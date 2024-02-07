@@ -82,11 +82,18 @@ export default function Home() {
             // @ts-ignore
             setName(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              toast.dismiss(t.id);
+              toast.success(`Name set to ${name}`);
+            }
+          }}
         />
         <button
           className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
           onClick={() => {
             toast.dismiss(t.id);
+            toast.success(`Name set to ${name}`);
           }}
         >
           Set Name
@@ -97,6 +104,12 @@ export default function Home() {
     return () => {
       toast.dismiss();
     };
+  }, []);
+
+  useEffect(() => {
+    if (name) {
+      toast.success(`Welcome ${name}`);
+    }
   }, []);
 
   return (
