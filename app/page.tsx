@@ -25,7 +25,6 @@ export default function Home() {
   };
 
   const handleAddChat = async () => {
-    
     if (input === "" && image === "") {
       toast.error("Please enter a message or upload an image");
       return;
@@ -74,25 +73,26 @@ export default function Home() {
     <main className="flex flex-col gap-2 p-10">
       <Toaster />
       <h1 className="text-center font-black text-3xl mb-5">Chaty</h1>
-      <ul className="overflow-y-scroll h-[80vh] no-scrollbar">
+      <ul className="overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4">
         {/* @ts-ignore */}
         {chat.map((chat: Chat, index: number) => (
-          <li key={index} className="mb-5">
-            <div className="flex flex-col gap-3 p-4 justify-center bg-black text-white rounded-sm">
+          <li key={index}>
+            <div className="flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md">
               <div className="flex gap-2 items-center">
                 <Image
                   src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
                   alt="profile"
                   width={30}
                   height={30}
-                  className="rounded-full"
                 />
                 <p className="font-bold">You</p>
               </div>
               {chat.image && (
-                <Image src={chat.image} alt="image" width={100} height={150} />
+                <Image src={chat.image} alt="image" width={100} height={100} />
               )}
-              {chat.message && <p className="font-medium mt-3">{chat.message}</p>}
+              {chat.message && (
+                <p className="font-medium mt-3">{chat.message}</p>
+              )}
             </div>
           </li>
         ))}
@@ -100,6 +100,11 @@ export default function Home() {
       <div className="flex items-center gap-2">
         <input
           type="text"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleAddChat();
+            }
+          }}
           onChange={(e) => handleInput(e)}
           className="border-2 border-black h-10 w-1/2 p-2 rounded-sm"
         />
