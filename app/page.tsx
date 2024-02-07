@@ -25,6 +25,12 @@ export default function Home() {
   };
 
   const handleAddChat = async () => {
+
+    if(input === "") {
+      toast.error("Please enter a message");
+      return;
+    }
+
     dispatch(addChat({ message: input, image: image }));
 
     const response = await fetch("/api/chat", {
