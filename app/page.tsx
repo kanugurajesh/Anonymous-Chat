@@ -8,6 +8,7 @@ import { UploadButton } from "@/utils/uploadthing";
 import toast, { Toaster } from "react-hot-toast";
 
 interface Chat {
+  name: string;
   message: string;
   image: string;
 }
@@ -15,6 +16,7 @@ interface Chat {
 export default function Home() {
   const [input, setInput] = useState<string>("");
   const [image, setImage] = useState<string>("");
+  const [name, setName] = useState<string>("user");
 
   const chat = useAppSelector((state) => state.chat.chats);
 
@@ -30,14 +32,14 @@ export default function Home() {
       return;
     }
 
-    dispatch(addChat({ message: input, image: image }));
+    dispatch(addChat({ name: name, message: input, image: image }));
 
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: input, image: image }),
+      body: JSON.stringify({ name: name, message: input, image: image }),
     });
 
     const data = await response.json();
@@ -69,6 +71,33 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    toast((t) => (
+      <span className="flex gap-3">
+        <input
+          type="text"
+          className="border-2 border-black-700 rounded-sm h-9 w-[200px] p-2"
+          onChange={(e) => {
+            // @ts-ignore
+            setName(e.target.value);
+          }}
+        />
+        <button
+        className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
+          onClick={() => {
+            toast.dismiss(t.id);
+          }}
+        >
+          Set Name
+        </button>
+      </span>
+    ));
+
+    return () => {
+      toast.dismiss();
+    };
+  }, []);
+
   return (
     <main className="flex flex-col gap-2 p-10">
       <Toaster />
@@ -85,7 +114,7 @@ export default function Home() {
                   width={30}
                   height={30}
                 />
-                <p className="font-bold">You</p>
+                <p className="font-bold">{chat.name}</p>
               </div>
               {chat.image && (
                 <Image src={chat.image} alt="image" width={100} height={100} />
