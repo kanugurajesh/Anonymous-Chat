@@ -25,6 +25,7 @@ export default function Home() {
   };
 
   const handleAddChat = async () => {
+    
     if (input === "" && image === "") {
       toast.error("Please enter a message or upload an image");
       return;
@@ -72,28 +73,26 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-2 p-10">
       <Toaster />
-      <h1 className="text-center font-black text-3xl">Chaty</h1>
-      <ul>
+      <h1 className="text-center font-black text-3xl mb-5">Chaty</h1>
+      <ul className="overflow-y-scroll h-[80vh] no-scrollbar">
         {/* @ts-ignore */}
         {chat.map((chat: Chat, index: number) => (
           <li key={index} className="mb-5">
-            <div className="flex flex-col gap-3 justify-center">
+            <div className="flex flex-col gap-3 p-4 justify-center bg-black text-white rounded-sm">
+              <div className="flex gap-2 items-center">
+                <Image
+                  src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
+                  alt="profile"
+                  width={30}
+                  height={30}
+                  className="rounded-full"
+                />
+                <p className="font-bold">You</p>
+              </div>
               {chat.image && (
                 <Image src={chat.image} alt="image" width={100} height={150} />
               )}
-              <div className="bg-black text-white mr-auto p-4 rounded-sm flex flex-col gap-4 w-full">
-                <div className="flex gap-2 items-center">
-                  <Image
-                    src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
-                    alt="profile"
-                    width={30}
-                    height={30}
-                    className="rounded-full"
-                  />
-                  <p className="font-bold">You</p>
-                </div>
-                <p>{chat.message}</p>
-              </div>
+              {chat.message && <p className="font-medium mt-3">{chat.message}</p>}
             </div>
           </li>
         ))}
@@ -127,7 +126,7 @@ export default function Home() {
           className={`bg-black text-white px-6 py-2 rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200`}
           onClick={() => handleAddChat()}
         >
-          Add
+          Send
         </button>
       </div>
     </main>
