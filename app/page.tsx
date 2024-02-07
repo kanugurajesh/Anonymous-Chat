@@ -25,9 +25,8 @@ export default function Home() {
   };
 
   const handleAddChat = async () => {
-
-    if(input === "") {
-      toast.error("Please enter a message");
+    if (input === "" && image === "") {
+      toast.error("Please enter a message or upload an image");
       return;
     }
 
@@ -80,9 +79,21 @@ export default function Home() {
           <li key={index} className="mb-5">
             <div className="flex flex-col gap-3 justify-center">
               {chat.image && (
-                <Image src={chat.image} alt="image" width={100} height={100} className="float-left"/>
+                <Image src={chat.image} alt="image" width={100} height={150} />
               )}
-              <p className="bg-black text-white mr-auto p-2 rounded-sm">{chat.message}</p>
+              <div className="bg-black text-white mr-auto p-4 rounded-sm flex flex-col gap-4 w-full">
+                <div className="flex gap-2 items-center">
+                  <Image
+                    src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
+                    alt="profile"
+                    width={30}
+                    height={30}
+                    className="rounded-full"
+                  />
+                  <p className="font-bold">You</p>
+                </div>
+                <p>{chat.message}</p>
+              </div>
             </div>
           </li>
         ))}
@@ -94,7 +105,7 @@ export default function Home() {
           className="border-2 border-black h-10 w-1/2 p-2 rounded-sm"
         />
         <UploadButton
-        className="mt-6"
+          className="mt-6"
           endpoint="imageUploader"
           // @ts-ignore
           onBeforeUploadBegin={(file: File) => {
@@ -112,7 +123,12 @@ export default function Home() {
             loadingToast(false);
           }}
         />
-        <button className="bg-black text-white px-6 py-2 rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200" onClick={() => handleAddChat()}>Add</button>
+        <button
+          className={`bg-black text-white px-6 py-2 rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200`}
+          onClick={() => handleAddChat()}
+        >
+          Add
+        </button>
       </div>
     </main>
   );
