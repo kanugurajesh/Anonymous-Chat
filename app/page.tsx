@@ -105,8 +105,8 @@ export default function Home() {
       <ul className="overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4">
         {/* @ts-ignore */}
         {chat.map((chat: Chat, index: number) => (
-          <li key={index}>
-            <div className="flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md">
+          <li key={index} className="w-full">
+            <div className={`flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md ${index%2 == 0 ? "float-start" : "float-end" }`}>
               <div className="flex gap-2 items-center">
                 <Image
                   src="https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235"
@@ -126,7 +126,7 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <input
           type="text"
           onKeyDown={(e) => {
