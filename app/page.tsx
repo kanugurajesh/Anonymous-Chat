@@ -17,7 +17,7 @@ interface Chat {
 export default function Home() {
   const [input, setInput] = useState<string>("");
   const [image, setImage] = useState<string>("");
-  const [name, setName] = useState<string>("user");
+  const [name, setName] = useState<string>("");
 
   const chat = useAppSelector((state) => state.chat.chats);
 
@@ -73,37 +73,50 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    toast((t) => (
-      <span className="flex gap-3">
-        <input
-          type="text"
-          className="border-2 border-black-700 rounded-sm h-9 w-[200px] p-2"
-          onChange={(e) => {
-            // @ts-ignore
-            setName(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
+    const myName = localStorage.getItem("name");
+    if (myName) {
+      setName(myName);
+    } else {
+      toast((t) => (
+        <span className="flex gap-3">
+          <input
+            type="text"
+            className="border-2 border-black-700 rounded-sm h-9 w-[200px] p-2"
+            onChange={(e) => {
+              // @ts-ignore
+              setName(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                toast.dismiss(t.id);
+                setName((prev) => {
+                  localStorage.setItem("name", prev);
+                  toast.success(`Name set to ${prev}`);
+                  return prev;
+                });
+              }
+            }}
+          />
+          <button
+            className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
+            onClick={() => {
               toast.dismiss(t.id);
-              toast.success(`Name set to ${name}`);
-            }
-          }}
-        />
-        <button
-          className="bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2"
-          onClick={() => {
-            toast.dismiss(t.id);
-            toast.success(`Name set to ${name}`);
-          }}
-        >
-          Set Name
-        </button>
-      </span>
-    ));
+              setName((prev) => {
+                localStorage.setItem("name", prev);
+                toast.success(`Name set to ${prev}`);
+                return prev;
+              });
+            }}
+          >
+            Set Name
+          </button>
+        </span>
+      ));
 
-    return () => {
-      toast.dismiss();
-    };
+      return () => {
+        toast.dismiss();
+      };
+    }
   }, []);
 
   useEffect(() => {
