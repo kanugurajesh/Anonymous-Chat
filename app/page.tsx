@@ -2,6 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/helper/hook';
 import { addChat, clearChat } from '@/features/chats/chatSlice';
+import { addName } from '@/features/name/nameSlice';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { UploadButton } from '@/utils/uploadthing';
@@ -18,10 +19,10 @@ interface Chat {
 export default function Home() {
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
-  const [name, setName] = useState<string>('');
 
   const chat = useAppSelector((state) => state.chat.chats);
   const profile = useAppSelector((state) => state.profile.profile);
+  const name = useAppSelector((state) => state.name.name);
 
   const dispatch = useAppDispatch();
 
@@ -93,7 +94,8 @@ export default function Home() {
   useEffect(() => {
     const myName = localStorage.getItem('name');
     if (myName) {
-      setName(myName);
+      dispatch(addName(myName));
+      // setName(myName);
     } else {
       toast((t) => (
         <span className='flex gap-3'>
@@ -107,11 +109,13 @@ export default function Home() {
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 toast.dismiss(t.id);
-                setName((prev) => {
-                  localStorage.setItem('name', prev);
-                  toast.success(`Name set to ${prev}`);
-                  return prev;
-                });
+                localStorage.setItem('name', name);
+                toast.success(`Name set to ${name}`);
+                // setName((prev) => {
+                //   localStorage.setItem('name', prev);
+                //   toast.success(`Name set to ${prev}`);
+                //   return prev;
+                // });
               }
             }}
           />
@@ -119,11 +123,14 @@ export default function Home() {
             className='bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2'
             onClick={() => {
               toast.dismiss(t.id);
-              setName((prev) => {
-                localStorage.setItem('name', prev);
-                toast.success(`Name set to ${prev}`);
-                return prev;
-              });
+              localStorage.setItem('name', name);
+              toast.success(`Name set to ${name}`);
+
+              // setName((prev) => {
+              //   localStorage.setItem('name', prev);
+              //   toast.success(`Name set to ${prev}`);
+              //   return prev;
+              // });
             }}
           >
             Set Name
