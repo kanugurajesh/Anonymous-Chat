@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
       message,
       image,
     });
-    console.log('Chat: ', chat);
     await chat.save();
     return NextResponse.json(
       { message: 'Chat saved successfully' },

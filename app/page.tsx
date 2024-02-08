@@ -36,7 +36,14 @@ export default function Home() {
     }
 
     dispatch(
-      addChat({ name: name, profile: profile, message: input, image: image }),
+      addChat({
+        name: name,
+        profile:
+          profile ||
+          'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235',
+        message: input,
+        image: image,
+      }),
     );
 
     const response = await fetch('/api/chat', {
@@ -46,7 +53,9 @@ export default function Home() {
       },
       body: JSON.stringify({
         name: name,
-        profile: profile,
+        profile:
+          profile ||
+          'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235',
         message: input,
         image: image,
       }),
