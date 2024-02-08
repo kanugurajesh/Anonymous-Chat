@@ -156,21 +156,21 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex flex-col gap-2 p-10 pt-5 bg-custom-cream'>
+    <main className='flex flex-col gap-2 p-10 pt-5 bg-custom-cream h-screen'>
       <Toaster />
       <Link
         href='https://github.com/kanugurajesh/multi-chat-app'
-        className='absolute top-5 left-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-full'
+        className='absolute top-5 left-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-md mt-5'
       >
         Github ⭐
       </Link>
       <Link
         href='/profile'
-        className='absolute top-5 right-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-full'
+        className='absolute top-5 right-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-md mt-5'
       >
         Set Profile
       </Link>
-      <h1 className='text-center font-black text-3xl mb-5 h-14'>
+      <h1 className='text-center font-black text-3xl my-5 mb-10 h-14'>
         <span className='text-with-background bg-gradient-to-r from-purple-500 to-pink-500 text-with-background'>
           Chaty
         </span>
@@ -178,7 +178,7 @@ export default function Home() {
       <div className='relative'></div>
       <ul
         ref={chatListRef}
-        className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'
+        className='overflow-y-scroll max-h-full p-4 flex flex-col gap-3'
       >
         {chat && (
           <>
