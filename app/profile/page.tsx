@@ -40,10 +40,10 @@ export default function Profile() {
         Go Back
       </Link>
       <Link
-        href='/profile'
+        href='/Contact'
         className='absolute top-5 right-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
       >
-        Contact Us
+        Contact Me
       </Link>
       <h1 className='font-black text-xl'>Set Profile</h1>
       {(profile || image) && (

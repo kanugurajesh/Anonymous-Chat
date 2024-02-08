@@ -235,7 +235,8 @@ export default function Home() {
             className='border-2 border-black h-10 max-w-[250px] p-2 rounded-full'
           />
           <MdOutlineSend
-            className='absolute top-[10px] hover:cursor-pointer right-[10px] w-[20px] h-[20px]'
+          className='w-8 h-8 bg-black text-white font-bold p-2 rounded-full hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0 absolute top-[3.5px] right-[5px] mr-[1px]'
+            // className='absolute top-[10px] hover:cursor-pointer right-[10px] w-[20px] h-[20px]'
             onClick={() => {
               handleAddChat();
               setInput('');
