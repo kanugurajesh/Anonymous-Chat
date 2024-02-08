@@ -182,12 +182,18 @@ export default function Home() {
               }`}
             >
               <div className='flex gap-2 items-center'>
-                <Image
+                <img
+                  src={chat.profile as string}
+                  alt='profile'
+                  style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover'}}
+                />
+
+                {/* <Image
                   src={chat.profile as string}
                   alt='profile'
                   width={30}
                   height={30}
-                />
+                /> */}
                 <p className='font-bold'>{chat.name}</p>
               </div>
               {chat.image && (
