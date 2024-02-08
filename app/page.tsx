@@ -155,7 +155,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex flex-col gap-2 p-10 pt-5'>
+    <main className='flex flex-col gap-2 p-10 pt-5 bg-custom-cream'>
       <Toaster />
       <Link
         href='https://github.com/kanugurajesh/multi-chat-app'
@@ -171,12 +171,15 @@ export default function Home() {
       </Link>
       <h1 className='text-center font-black text-3xl mb-5'>Chaty</h1>
       <div className='relative'></div>
-      <ul ref={chatListRef} className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'>
+      <ul
+        ref={chatListRef}
+        className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'
+      >
         {/* @ts-ignore */}
-        {chat.map((chat: Chat, index: number) => (
+        {chat && chat.map((chat: Chat, index: number) => (
           <li key={index} className='w-full'>
             <div
-              className={`flex flex-col gap-4 p-4 justify-center bg-black text-white rounded-md ${
+              className={`flex flex-col gap-4 p-4 justify-center bg-custom-light-green text-black rounded-md ${
                 index % 2 == 0 ? 'float-start' : 'float-end'
               }`}
             >
@@ -214,10 +217,10 @@ export default function Home() {
             }
           }}
           onChange={(e) => handleInput(e)}
-          className='border-2 border-black h-10 w-1/2 p-2 rounded-sm'
+          className='border-2 border-black h-10 max-w-[250px] p-2 rounded-full'
         />
         <UploadButton
-          className='mt-6'
+          className='mt-6 rounded-full'
           endpoint='imageUploader'
           // @ts-ignore
           onBeforeUploadBegin={(file: File) => {
@@ -236,7 +239,7 @@ export default function Home() {
           }}
         />
         <button
-          className={`bg-black text-white px-6 py-2 rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200`}
+          className={`bg-black text-white px-6 py-2 hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200 rounded-full`}
           onClick={() => {
             handleAddChat();
             setInput('');
