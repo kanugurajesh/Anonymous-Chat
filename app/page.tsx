@@ -159,17 +159,21 @@ export default function Home() {
       <Toaster />
       <Link
         href='https://github.com/kanugurajesh/multi-chat-app'
-        className='absolute top-5 left-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
+        className='absolute top-5 left-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-full'
       >
         Github ⭐
       </Link>
       <Link
         href='/profile'
-        className='absolute top-5 right-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
+        className='absolute top-5 right-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-full'
       >
         Set Profile
       </Link>
-      <h1 className='text-center font-black text-3xl mb-5'>Chaty</h1>
+      <h1 className='text-center font-black text-3xl mb-5 h-14'>
+        <span className='text-with-background bg-gradient-to-r from-purple-500 to-pink-500 text-with-background'>
+          Chaty
+        </span>
+      </h1>
       <div className='relative'></div>
       <ul
         ref={chatListRef}
@@ -177,34 +181,39 @@ export default function Home() {
       >
         {/* @ts-ignore */}
         {chat && chat.map((chat: Chat, index: number) => (
-          <li key={index} className='w-full'>
-            <div
-              className={`flex flex-col gap-4 p-4 justify-center bg-custom-light-green text-black rounded-md ${
-                index % 2 == 0 ? 'float-start' : 'float-end'
-              }`}
-            >
-              <div className='flex gap-2 items-center'>
-                <img
-                  src={chat.profile as string}
-                  alt='profile'
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                  }}
-                />
-                <p className='font-bold'>{chat.name}</p>
+            <li key={index} className='w-full'>
+              <div
+                className={`flex flex-col gap-4 p-4 justify-center bg-custom-light-green text-black rounded-md ${
+                  index % 2 == 0 ? 'float-start' : 'float-end'
+                }`}
+              >
+                <div className='flex gap-2 items-center'>
+                  <img
+                    src={chat.profile as string}
+                    alt='profile'
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                  <p className='font-bold'>{chat.name}</p>
+                </div>
+                {chat.image && (
+                  <Image
+                    src={chat.image}
+                    alt='image'
+                    width={100}
+                    height={100}
+                  />
+                )}
+                {chat.message && (
+                  <p className='font-medium mt-3'>{chat.message}</p>
+                )}
               </div>
-              {chat.image && (
-                <Image src={chat.image} alt='image' width={100} height={100} />
-              )}
-              {chat.message && (
-                <p className='font-medium mt-3'>{chat.message}</p>
-              )}
-            </div>
-          </li>
-        ))}
+            </li>
+          ))}
       </ul>
       <div className='flex items-center justify-center gap-2'>
         <input
