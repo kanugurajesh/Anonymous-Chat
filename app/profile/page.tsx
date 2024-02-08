@@ -47,12 +47,15 @@ export default function Profile() {
       </Link>
       <h1 className='font-black text-xl'>Set Profile</h1>
       {(profile || image) && (
-        <Image
+        <img
           src={profile || image}
           alt='profile'
-          width={100}
-          height={100}
-          className='bg-cover '
+          style={{
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
         />
       )}
       {(name || input) && (
