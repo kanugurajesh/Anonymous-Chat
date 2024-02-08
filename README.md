@@ -1,4 +1,4 @@
-🌟 star the project if you like it
+#### 🌟 star the project if you like it
 
 <div align=center>
   <img src="https://github.com/kanugurajesh/Multi-Chat-App/assets/77529419/85fceb43-a565-45f0-be08-00b227cc5a8e" alt="anonymous" width=150 height=150>
