@@ -203,9 +203,11 @@ export default function Home() {
       <div className='flex items-center justify-center gap-2'>
         <input
           type='text'
+          value={input}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               handleAddChat();
+              setInput('');
             }
           }}
           onChange={(e) => handleInput(e)}
@@ -232,7 +234,11 @@ export default function Home() {
         />
         <button
           className={`bg-black text-white px-6 py-2 rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200`}
-          onClick={() => handleAddChat()}
+          onClick={() => {
+            handleAddChat();
+            setInput('');
+            setImage('');
+          }}
         >
           Send
         </button>
