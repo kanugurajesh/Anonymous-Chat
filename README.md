@@ -16,8 +16,6 @@ An Chat application where you can express yourself freely as we do not have auth
 
 ![Screenshot 2024-02-08 214224](https://github.com/kanugurajesh/Anonymous-Chat/assets/77529419/c379a026-0b97-4d5b-8aaa-064ffc5c9eff)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Demo
 
 [![Anonymous Chat Demo](https://img.youtube.com/vi/fK2aoCrmUWc/0.jpg)](https://www.youtube.com/watch?v=fK2aoCrmUWc)
@@ -63,6 +61,8 @@ If you encounter any issues or have feedback, please open an issue on our [GitHu
 For support, you can buy me a coffee
 
 <a href="https://www.buymeacoffee.com/kanugurajen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
