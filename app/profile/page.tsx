@@ -2,6 +2,7 @@
 import { useAppDispatch, useAppSelector } from '@/helper/hook';
 import { addProfile, clearProfile } from '@/features/profile/profileSlice';
 import { addName, clearName } from '@/features/name/nameSlice';
+import Link from 'next/link';
 import { UploadButton } from '@uploadthing/react';
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
@@ -14,6 +15,18 @@ export default function Profile() {
   return (
     <main className='flex flex-col justify-center items-center h-screen'>
       <Toaster />
+      <Link
+        href='/'
+        className='absolute top-5 left-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
+      >
+        Go Back
+      </Link>
+      <Link
+        href='/profile'
+        className='absolute top-5 right-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
+      >
+        Contact Us
+      </Link>
       <h1 className='font-black text-xl'>Set Profile</h1>
       {profile && (
         <Image src={profile} alt='profile' width={200} height={200} />

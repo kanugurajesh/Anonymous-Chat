@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from '@/helper/hook';
 import { addChat, clearChat } from '@/features/chats/chatSlice';
 import { addName } from '@/features/name/nameSlice';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { UploadButton } from '@/utils/uploadthing';
 import Link from 'next/link';
+import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 
 // interface for chat
@@ -21,6 +21,10 @@ export default function Home() {
   // Adding some necessary states
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
+  const [myName, setMyName] = useState<string>('');
+
+  const defaultImage =
+    'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235';
 
   // Getting the chat from the store
   const chat = useAppSelector((state) => state.chat.chats);
@@ -47,9 +51,7 @@ export default function Home() {
     dispatch(
       addChat({
         name: name,
-        profile:
-          profile ||
-          'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235',
+        profile: profile || defaultImage,
         message: input,
         image: image,
       }),
@@ -63,9 +65,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         name: name,
-        profile:
-          profile ||
-          'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235',
+        profile: profile || defaultImage,
         message: input,
         image: image,
       }),
@@ -94,16 +94,17 @@ export default function Home() {
       data.forEach((chat: Chat) => {
         dispatch(addChat(chat));
       });
-      console.log('Chat: ', chat);
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const myName = localStorage.getItem('name');
-    if (myName) {
-      dispatch(addName(myName));
+    const myNameL = localStorage.getItem('name');
+    if (myNameL) {
+      setMyName(myNameL);
+      dispatch(addName(myNameL));
+      toast.success(`Welcome back ${myNameL}`);
     } else {
       toast((t) => (
         <span className='flex gap-3'>
@@ -112,13 +113,17 @@ export default function Home() {
             className='border-2 border-black-700 rounded-sm h-9 w-[200px] p-2'
             onChange={(e) => {
               // @ts-ignore
+              setMyName(e.target.value);
               dispatch(addName(e.target.value));
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 toast.dismiss(t.id);
-                localStorage.setItem('name', name);
-                toast.success(`Name set to ${name}`);
+                setMyName((prev) => {
+                  localStorage.setItem('name', prev);
+                  toast.success(`Welcome ${prev}`);
+                  return prev;
+                });
               }
             }}
           />
@@ -126,8 +131,12 @@ export default function Home() {
             className='bg-black text-white rounded-sm hover:bg-white hover:border-2 hover:border-black hover:text-black font-medium transition ease-in-out duration-200 p-2'
             onClick={() => {
               toast.dismiss(t.id);
-              localStorage.setItem('name', name);
-              toast.success(`Name set to ${name}`);
+              toast.dismiss(t.id);
+              setMyName((prev) => {
+                localStorage.setItem('name', prev);
+                toast.success(`Welcome ${prev}`);
+                return prev;
+              });
             }}
           >
             Set Name
@@ -148,7 +157,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex flex-col gap-2 p-10'>
+    <main className='flex flex-col gap-2 p-10 pt-5'>
       <Toaster />
       <Link
         href='https://github.com/kanugurajesh/multi-chat-app'
