@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ContactEmailTemplate } from "@/components/email-template";
 import { Resend } from "resend";
 
@@ -10,15 +10,15 @@ export async function POST(request: NextRequest) {
   const { name, email, message } = body;
 
   if (!name) {
-    return Response.json({ error: "Missing name" });
+    return NextResponse.json({ error: "Missing name" }, { status: 400 });
   }
 
   if (!email) {
-    return Response.json({ error: "Missing email" });
+    return NextResponse.json({ error: "Missing name" }, { status: 400 });
   }
 
   if (!message) {
-    return Response.json({ error: "Missing message" });
+    return NextResponse.json({ error: "Missing name" }, { status: 400 });
   }
 
   try {
@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
       }),
     });
 
-    return Response.json(data);
+    return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
-    return Response.json({ error });
+    return NextResponse.json({ error: "something went wrong" }, { status: 500 });
   }
 }

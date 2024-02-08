@@ -10,15 +10,6 @@ interface ContactEmailTemplateProps {
   message: string
 }
 
-export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  imageURl
-}) => (
-  <div>
-    <h1>Here is your image</h1>
-    <img src={imageURl} alt="image"/>
-  </div>
-);
-
 export const ContactEmailTemplate: React.FC<Readonly<ContactEmailTemplateProps>> = ({
   name, email, message
 }) => (
