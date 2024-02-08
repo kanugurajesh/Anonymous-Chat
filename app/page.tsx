@@ -8,6 +8,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
+import { MdOutlineSend } from 'react-icons/md';
 
 // interface for chat
 interface Chat {
@@ -179,57 +180,72 @@ export default function Home() {
         ref={chatListRef}
         className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'
       >
-        {/* @ts-ignore */}
-        {chat && chat.map((chat: Chat, index: number) => (
-            <li key={index} className='w-full'>
-              <div
-                className={`flex flex-col gap-4 p-4 justify-center bg-custom-light-green text-black rounded-md ${
-                  index % 2 == 0 ? 'float-start' : 'float-end'
-                }`}
-              >
-                <div className='flex gap-2 items-center'>
-                  <img
-                    src={chat.profile as string}
-                    alt='profile'
-                    style={{
-                      width: '30px',
-                      height: '30px',
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <p className='font-bold'>{chat.name}</p>
+        {chat && (
+          <>
+            {/* @ts-ignore */}
+            {chat.map((chat: Chat, index: number) => (
+              <li key={index} className='w-full'>
+                <div
+                  className={`flex flex-col gap-4 p-4 justify-center bg-custom-light-green text-black rounded-md ${
+                    index % 2 == 0 ? 'float-start' : 'float-end'
+                  }`}
+                >
+                  <div className='flex gap-2 items-center'>
+                    <img
+                      src={chat.profile as string}
+                      alt='profile'
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                    <p className='font-bold'>{chat.name}</p>
+                  </div>
+                  {chat.image && (
+                    <Image
+                      src={chat.image}
+                      alt='image'
+                      width={100}
+                      height={100}
+                    />
+                  )}
+                  {chat.message && (
+                    <p className='font-medium mt-3'>{chat.message}</p>
+                  )}
                 </div>
-                {chat.image && (
-                  <Image
-                    src={chat.image}
-                    alt='image'
-                    width={100}
-                    height={100}
-                  />
-                )}
-                {chat.message && (
-                  <p className='font-medium mt-3'>{chat.message}</p>
-                )}
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
+          </>
+        )}
       </ul>
       <div className='flex items-center justify-center gap-2'>
-        <input
-          type='text'
-          value={input}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+        <div className='relative'>
+          <input
+            type='text'
+            value={input}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleAddChat();
+                setInput('');
+              }
+            }}
+            onChange={(e) => handleInput(e)}
+            className='border-2 border-black h-10 max-w-[250px] p-2 rounded-full'
+          />
+          <MdOutlineSend
+            className='absolute top-[10px] hover:cursor-pointer right-[10px] w-[20px] h-[20px]'
+            onClick={() => {
               handleAddChat();
               setInput('');
-            }
-          }}
-          onChange={(e) => handleInput(e)}
-          className='border-2 border-black h-10 max-w-[250px] p-2 rounded-full'
-        />
+              setImage('');
+            }}
+          />
+        </div>
         <UploadButton
           className='mt-6 rounded-full'
+          id='image'
           endpoint='imageUploader'
           // @ts-ignore
           onBeforeUploadBegin={(file: File) => {
@@ -247,16 +263,6 @@ export default function Home() {
             loadingToast(false);
           }}
         />
-        <button
-          className={`bg-black text-white px-6 py-2 hover:bg-white hover:border-2 hover:border-black hover:text-black font-bold transition ease-in-out duration-200 rounded-full`}
-          onClick={() => {
-            handleAddChat();
-            setInput('');
-            setImage('');
-          }}
-        >
-          Send
-        </button>
       </div>
     </main>
   );
