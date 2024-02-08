@@ -3,8 +3,8 @@
 import { useAppDispatch, useAppSelector } from '@/helper/hook';
 import { addChat, clearChat } from '@/features/chats/chatSlice';
 import { addName } from '@/features/name/nameSlice';
-import { useState, useEffect } from 'react';
 import { UploadButton } from '@/utils/uploadthing';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
@@ -22,6 +22,7 @@ export default function Home() {
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [myName, setMyName] = useState<string>('');
+  const chatListRef = useRef<HTMLUListElement>(null);
 
   const defaultImage =
     'https://ik.imagekit.io/hbzknb1hm/user.png?updatedAt=1707320612235';
@@ -34,6 +35,12 @@ export default function Home() {
 
   // Dispatching the action
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (chatListRef.current) {
+      chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+    }
+  }, [chat]);
 
   // Handling the input
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +127,6 @@ export default function Home() {
                 toast.dismiss(t.id);
                 setMyName((prev) => {
                   localStorage.setItem('name', prev);
-                  toast.success(`Welcome ${prev}`);
                   return prev;
                 });
               }
@@ -133,7 +139,6 @@ export default function Home() {
               toast.dismiss(t.id);
               setMyName((prev) => {
                 localStorage.setItem('name', prev);
-                toast.success(`Welcome ${prev}`);
                 return prev;
               });
             }}
@@ -146,12 +151,6 @@ export default function Home() {
       return () => {
         toast.dismiss();
       };
-    }
-  }, []);
-
-  useEffect(() => {
-    if (name) {
-      toast.success(`Welcome ${name}`);
     }
   }, []);
 
@@ -172,7 +171,7 @@ export default function Home() {
       </Link>
       <h1 className='text-center font-black text-3xl mb-5'>Chaty</h1>
       <div className='relative'></div>
-      <ul className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'>
+      <ul ref={chatListRef} className='overflow-y-scroll max-h-[80vh] no-scrollbar flex flex-col gap-4'>
         {/* @ts-ignore */}
         {chat.map((chat: Chat, index: number) => (
           <li key={index} className='w-full'>

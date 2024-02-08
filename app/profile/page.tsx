@@ -7,7 +7,6 @@ import { addName, clearName } from '@/features/name/nameSlice';
 import Link from 'next/link';
 import { UploadButton } from '@uploadthing/react';
 import toast, { Toaster } from 'react-hot-toast';
-import Image from 'next/image';
 
 export default function Profile() {
   const [input, setInput] = useState<string>('');
