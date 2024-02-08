@@ -6,7 +6,7 @@
 
 # Anonymous Chat
 
-An application where you can express yourself without the fear of getting detected by anyone as we do not use authorization
+An Chat application where you can express yourself freely as we do not have authentication and authorization.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
