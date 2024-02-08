@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/helper/hook';
 import { addProfile, clearProfile } from '@/features/profile/profileSlice';
 import { addName, clearName } from '@/features/name/nameSlice';
@@ -12,6 +12,19 @@ import Image from 'next/image';
 export default function Profile() {
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
+
+  useEffect(() => {
+    const localName = localStorage.getItem('name');
+    const localProfile = localStorage.getItem('profile');
+
+    if (localName) {
+      setInput(localName);
+    }
+
+    if (localProfile) {
+      setImage(localProfile);
+    }
+  }, []);
 
   const profile = useAppSelector((state) => state.profile.profile);
   const name = useAppSelector((state) => state.name.name);
@@ -76,10 +89,12 @@ export default function Profile() {
               }
               if (input) {
                 dispatch(addName(input));
+                localStorage.setItem('name', input);
                 toast.success('Name set');
               }
               if (image) {
                 dispatch(addProfile(image));
+                localStorage.setItem('profile', image);
                 toast.success('Profile picture set');
               }
             }
@@ -94,10 +109,12 @@ export default function Profile() {
             }
             if (input) {
               dispatch(addName(input));
+              localStorage.setItem('name', input);
               toast.success('Name set');
             }
             if (image) {
               dispatch(addProfile(image));
+              localStorage.setItem('profile', image);
               toast.success('Profile picture set');
             }
           }}

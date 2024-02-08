@@ -104,7 +104,6 @@ export default function Home() {
     if (myNameL) {
       setMyName(myNameL);
       dispatch(addName(myNameL));
-      toast.success(`Welcome back ${myNameL}`);
     } else {
       toast((t) => (
         <span className='flex gap-3'>
