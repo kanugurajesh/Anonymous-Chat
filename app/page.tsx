@@ -9,6 +9,7 @@ import { UploadButton } from '@/utils/uploadthing';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
 
+// interface for chat
 interface Chat {
   profile: string;
   name: string;
@@ -17,25 +18,32 @@ interface Chat {
 }
 
 export default function Home() {
+  // Adding some necessary states
   const [input, setInput] = useState<string>('');
   const [image, setImage] = useState<string>('');
 
+  // Getting the chat from the store
   const chat = useAppSelector((state) => state.chat.chats);
+  // Getting the profile and name from the store
   const profile = useAppSelector((state) => state.profile.profile);
   const name = useAppSelector((state) => state.name.name);
 
+  // Dispatching the action
   const dispatch = useAppDispatch();
 
+  // Handling the input
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
+  // Handling the add chat
   const handleAddChat = async () => {
     if (input === '' && image === '') {
       toast.error('Please enter a message or upload an image');
       return;
     }
 
+    // dispatching the action to add chat
     dispatch(
       addChat({
         name: name,
@@ -47,6 +55,7 @@ export default function Home() {
       }),
     );
 
+    // clearing the input and image
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
@@ -95,7 +104,6 @@ export default function Home() {
     const myName = localStorage.getItem('name');
     if (myName) {
       dispatch(addName(myName));
-      // setName(myName);
     } else {
       toast((t) => (
         <span className='flex gap-3'>
@@ -111,11 +119,6 @@ export default function Home() {
                 toast.dismiss(t.id);
                 localStorage.setItem('name', name);
                 toast.success(`Name set to ${name}`);
-                // setName((prev) => {
-                //   localStorage.setItem('name', prev);
-                //   toast.success(`Name set to ${prev}`);
-                //   return prev;
-                // });
               }
             }}
           />
@@ -125,12 +128,6 @@ export default function Home() {
               toast.dismiss(t.id);
               localStorage.setItem('name', name);
               toast.success(`Name set to ${name}`);
-
-              // setName((prev) => {
-              //   localStorage.setItem('name', prev);
-              //   toast.success(`Name set to ${prev}`);
-              //   return prev;
-              // });
             }}
           >
             Set Name
@@ -153,6 +150,12 @@ export default function Home() {
   return (
     <main className='flex flex-col gap-2 p-10'>
       <Toaster />
+      <Link
+        href='https://github.com/kanugurajesh/multi-chat-app'
+        className='absolute top-5 left-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
+      >
+        Github ⭐
+      </Link>
       <Link
         href='/profile'
         className='absolute top-5 right-5 bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out'
