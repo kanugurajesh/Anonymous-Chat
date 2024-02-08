@@ -1,27 +1,29 @@
-import { connect } from "@/dbConfig/route";
-import { NextRequest, NextResponse } from "next/server";
-import chatModel from "@/models/chatModel";
+import { connect } from '@/dbConfig/route';
+import { NextRequest, NextResponse } from 'next/server';
+import chatModel from '@/models/chatModel';
 
 connect();
 
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { name, message, image } = reqBody;
+    const { name, profile, message, image } = reqBody;
     const chat = new chatModel({
       name,
+      profile,
       message,
       image,
     });
+    console.log('Chat: ', chat);
     await chat.save();
     return NextResponse.json(
-      { message: "Chat saved successfully" },
-      { status: 201 }
+      { message: 'Chat saved successfully' },
+      { status: 201 },
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "There was an error saving the chat" },
-      { status: 500 }
+      { message: 'There was an error saving the chat' },
+      { status: 500 },
     );
   }
 }
@@ -35,8 +37,8 @@ export async function GET() {
     return NextResponse.json(chats, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "There was an error fetching the chats" },
-      { status: 500 }
+      { message: 'There was an error fetching the chats' },
+      { status: 500 },
     );
   }
 }
