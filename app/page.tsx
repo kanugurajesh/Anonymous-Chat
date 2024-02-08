@@ -51,7 +51,7 @@ export default function Home() {
     dispatch(
       addChat({
         name: name,
-        profile: profile || defaultImage,
+        profile: profile,
         message: input,
         image: image,
       }),
