@@ -67,7 +67,9 @@ export default function Profile() {
         endpoint='imageUploader'
         // @ts-ignore
         onBeforeUploadBegin={(file: File) => {
-          toast.loading(`Uploading... ${file.name}`);
+          console.log(file);
+          // @ts-ignore
+          toast.loading(`Uploading... ${file[0].name}`);
         }}
         onClientUploadComplete={(res: any) => {
           setImage(res[0].url);

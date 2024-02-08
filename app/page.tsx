@@ -87,7 +87,7 @@ export default function Home() {
 
   const loadingToast = (loading: boolean) => {
     if (loading) {
-      toast.loading('Uploading...');
+      toast.loading(`Uploading...`);
     } else {
       toast.dismiss();
     }
