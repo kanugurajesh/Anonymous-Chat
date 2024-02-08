@@ -8,7 +8,19 @@
 
 An Chat application where you can express yourself freely as we do not have authentication and authorization.
 
+## Screenshots
+
+![Screenshot 2024-02-08 214215](https://github.com/kanugurajesh/Anonymous-Chat/assets/77529419/13680b35-d1bf-4795-b30d-8bcb6f489bd1)
+
+![Screenshot 2024-02-08 214220](https://github.com/kanugurajesh/Anonymous-Chat/assets/77529419/bc428ddd-270b-45ad-9536-1ef11b868399)
+
+![Screenshot 2024-02-08 214224](https://github.com/kanugurajesh/Anonymous-Chat/assets/77529419/c379a026-0b97-4d5b-8aaa-064ffc5c9eff)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Demo
+
+[![Anonymous Chat Demo](https://img.youtube.com/vi/fK2aoCrmUWc/0.jpg)](https://www.youtube.com/watch?v=fK2aoCrmUWc)
 
 ## Getting Started
 
