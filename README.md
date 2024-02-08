@@ -22,6 +22,48 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 [![Anonymous Chat Demo](https://img.youtube.com/vi/fK2aoCrmUWc/0.jpg)](https://www.youtube.com/watch?v=fK2aoCrmUWc)
 
+## Features
+
+- Anonymous Chat
+- Profile Creation
+- Contact Form
+- Persistent client data
+- Image Sharing
+
+## Tech Stack
+
+- Next.js
+- Tailwindcss
+- Typescript
+- Resend Api
+- MongoDB
+- Uploadthing
+
+## Contribution Guidelines
+
+We welcome contributions to enhance and improve the llm app. If you have ideas or improvements, feel free to submit a pull request following our contribution guidelines.
+
+## Feedback and Issues
+
+If you encounter any issues or have feedback, please open an issue on our [GitHub repository](https://github.com/kanugurajesh/LearnForge/issues). We appreciate your input and strive to make our system better with each update.
+
+## 🌐 Socials:
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://rajeshportfolio.me/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rajesh-kanugu-aba8a3254/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/exploringengin1)
+[![youtube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@RajeshCoder)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCK8JZ6oQY32SQO3ohLWkuxw)
+  
+## Authors
+
+- [@kanugurajesh](https://github.com/kanugurajesh)
+
+## Support
+
+For support, you can buy me a coffee
+
+<a href="https://www.buymeacoffee.com/kanugurajen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 ## Getting Started
 
 First, run the development server:
