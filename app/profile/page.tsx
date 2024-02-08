@@ -6,6 +6,7 @@ import { addProfile, clearProfile } from '@/features/profile/profileSlice';
 import { addName, clearName } from '@/features/name/nameSlice';
 import Link from 'next/link';
 import { UploadButton } from '@uploadthing/react';
+import { MdOutlineSend } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function Profile() {
@@ -79,7 +80,7 @@ export default function Profile() {
           toast.error(`ERROR! ${error.message}`);
         }}
       />
-      <div className='flex gap-2 justify-center items-center'>
+      <div className='flex gap-2 justify-center items-center relative'>
         <input
           type='text'
           onChange={(e) => setInput(e.target.value)}
@@ -103,7 +104,7 @@ export default function Profile() {
           }}
           className='border-2 border-black h-10 max-x-[100px] p-2 rounded-sm'
         />
-        <button
+        <MdOutlineSend
           onClick={() => {
             if (input === '' && image === '') {
               toast.error('Please set profile and name');
@@ -120,10 +121,8 @@ export default function Profile() {
               toast.success('Profile picture set');
             }
           }}
-          className='bg-black text-white font-bold p-2 px-4 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0'
-        >
-          Submit
-        </button>
+          className='w-8 h-8 bg-black text-white font-bold p-2 rounded-full hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0 absolute top-[3.5px] right-1 mr-[1px]'
+        />
       </div>
     </main>
   );
