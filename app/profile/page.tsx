@@ -120,7 +120,7 @@ export default function Profile() {
               toast.success('Profile picture set');
             }
           }}
-          className='bg-black text-white font-bold p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0'
+          className='bg-black text-white font-bold p-2 px-4 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0'
         >
           Submit
         </button>
