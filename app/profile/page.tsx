@@ -9,7 +9,7 @@ import Image from 'next/image';
 export default function Profile() {
   const profile = useAppSelector((state) => state.profile.profile);
   const name = useAppSelector((state) => state.name.name);
-  
+
   const dispatch = useAppDispatch();
   return (
     <main className='flex flex-col justify-center items-center h-screen'>

@@ -104,7 +104,7 @@ export default function Home() {
             className='border-2 border-black-700 rounded-sm h-9 w-[200px] p-2'
             onChange={(e) => {
               // @ts-ignore
-              setName(e.target.value);
+              dispatch(addName(e.target.value));
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
