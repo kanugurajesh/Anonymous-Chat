@@ -159,7 +159,7 @@ export default function Home() {
     <main className='flex flex-col gap-2 p-10 pt-5 bg-custom-cream h-screen'>
       <Toaster />
       <Link
-        href='https://github.com/kanugurajesh/multi-chat-app'
+        href='https://github.com/kanugurajesh/Anonymous-Chat'
         className='absolute top-5 left-5 bg-black text-white font-bold p-3 hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out rounded-md mt-5'
       >
         Github ⭐
