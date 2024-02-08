@@ -121,7 +121,7 @@ export default function Profile() {
               toast.success('Profile picture set');
             }
           }}
-          className='w-8 h-8 bg-black text-white font-bold p-2 rounded-full hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0 absolute top-[3.5px] right-1 mr-[1px]'
+          className='w-8 h-8 bg-black text-white font-bold p-2 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-200 ease-in-out outline-none outline-0 absolute top-[3.5px] right-1 mr-[1px]'
         />
       </div>
     </main>
